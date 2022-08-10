@@ -1,0 +1,76 @@
+h4 {
+  font-size: 32px;
+  text-transform: uppercase;
+  margin-bottom: 30px;
+}
+
+.big-p {
+  margin: auto;
+  margin-bottom: 20px;
+}
+
+#grey {
+  background-color: #212121;
+}
+
+.get-in-touch {
+  font-weight: 600;
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 30px;
+  position: relative;
+  top: 100px;
+  z-index: 1;
+  margin-left: 40px;
+}
+
+.bg-stroke {
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: rgb(245, 222, 226);
+  color: transparent;
+  font-size: 50px;
+  margin-top: 0px;
+  text-transform: uppercase;
+  text-align: center;
+  z-index: -1;
+}
+.text-touch {
+  font-size: 12px;
+  margin-top: 50px;
+  text-align: center;
+}
+.dp {
+  margin: auto;
+}
+
+#black {
+  background-color: black;
+}
+
+.test-3 {
+  margin-left: -120px;
+  margin-top: 70px;
+  color: white;
+  background-color: #0000008f;
+}
+
+.test-3 > p {
+  padding: 20px;
+}
+
+.owl-carousel-3 > .owl-nav {
+  float: right;
+}
+
+.client {
+  float: right;
+  color: white;
+}
+
+.owl-next {
+  font-size: 40px !important;
+  margin-left: 25px !important;
+}
+.owl-prev {
+  font-size: 40px !important;
+}

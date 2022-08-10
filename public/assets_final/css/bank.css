@@ -1,0 +1,85 @@
+.get-in-touch {
+  font-weight: 600;
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 30px;
+  position: relative;
+  top: 100px;
+  z-index: 1;
+}
+
+.bg-stroke {
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: rgb(245, 222, 226);
+  color: transparent;
+  font-size: 70px;
+  margin-top: -25px;
+  text-transform: uppercase;
+  text-align: center;
+  z-index: -1;
+}
+.text-touch {
+  font-size: 12px;
+  margin-top: 50px;
+  text-align: center;
+  padding-left: 50px;
+  padding-right: 50px;
+}
+.get-in-touch > span {
+  text-decoration: underline;
+  text-decoration-color: #ff294e;
+}
+
+red {
+  color: #ff294e;
+}
+
+.rect {
+  background-color: white;
+  width: 100%;
+  margin-top: 30px;
+}
+
+.col-md-5 > img {
+  margin: 20px;
+}
+.table {
+  padding-top: 2px;
+  border: 1px solid black;
+  padding-bottom: 3px;
+  height: 30px;
+  margin-bottom: -1px;
+  padding-left: 20px;
+}
+
+.col-md-7 {
+  padding-left: 20px;
+  margin-top: 50px;
+}
+strong {
+  text-transform: uppercase;
+}
+tr {
+  border: 1px solid black;
+}
+
+.h-td {
+  font-weight: 600;
+  padding-left: 25px;
+  text-transform: uppercase;
+}
+.c-td {
+  padding-left: 40px;
+  width: 75%;
+}
+
+@media only screen and (max-width: 767px) {
+  .col-md-5 > img {
+    width: 260px;
+  }
+}
+.img-shodow{
+  border: 1px solid;
+      padding: 18px;
+      box-shadow: inset -20px -18px red;
+}

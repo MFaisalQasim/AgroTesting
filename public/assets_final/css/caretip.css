@@ -1,0 +1,39 @@
+.get-in-touch {
+    font-weight: 600;
+    text-transform: uppercase;
+    text-align: center;
+    margin-bottom: 30px;
+    position: relative;
+    z-index: 1;
+}
+
+.align-div{
+    margin-left: 25%;
+    margin-right: 25%;
+}
+.get-in-touch2 {
+    margin-left: 26%;
+    font-weight: 600;
+    text-transform: uppercase;
+    position: relative;
+    z-index: 1;
+}
+.get-in-touch3 {
+    margin-left: 26%;
+    text-transform: uppercase;
+    position: relative;
+    z-index: 1;
+}
+
+.text-touch {
+    font-size: 20px;
+    margin-top: 25px;
+    text-align: center;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+.get-in-touch>span {
+    text-decoration: underline;
+    text-decoration-color: #ff294e;
+}

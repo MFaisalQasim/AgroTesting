@@ -1,0 +1,67 @@
+h1 {
+    font-size: 26px;
+}
+
+div.section {
+    margin: 45px 0 8px 5px;
+    border-left: #ccc solid 1px;
+    padding-top: 14px;
+}
+
+div.section div {
+    padding: 4px 0;
+    margin: 8px 0;
+}
+
+div.section div:before,
+div.section p:before {
+    content: "\2014\2014";
+    color: #ccc;
+    font-weight: normal;
+    letter-spacing: 0;
+}
+
+div.section p:before {
+    content: "\2014";
+}
+
+div.section a {
+    display: inline-block;
+    border: #ccc solid 1px;
+    padding: 6px 12px;
+    border-radius: 5px;
+    max-width: 80%;
+}
+
+div.section a:hover {
+    box-shadow: 0px 1px 2px 1px rgba(0, 0, 0, .1);
+}
+
+div.section p {
+    font-weight: bold;
+    margin-top: -24px;
+    position: absolute;
+}
+
+div.section p a {
+    display: inline;
+}
+
+div.PageBreak {
+    margin-top: 16px;
+}
+
+div.PageBreak span {
+    font-weight: bold;
+}
+
+div.footerinfo {
+    margin-top: 16px;
+    color: #666;
+    font-size: 12px;
+    text-align: right;
+}
+
+div.footerinfo * {
+    font-size: 12px;
+}

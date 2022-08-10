@@ -1,0 +1,125 @@
+.get-in-touch {
+  font-weight: 600;
+  text-transform: uppercase;
+  text-align: left;
+  margin-bottom: 30px;
+  position: relative;
+  top: 100px;
+  z-index: 1;
+  margin-left: 40px;
+}
+
+.bg-stroke {
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: rgb(245, 222, 226);
+  color: transparent;
+  font-size: 50px;
+  margin-top: 0px;
+  text-transform: uppercase;
+  text-align: left;
+  z-index: -1;
+}
+.text-touch {
+  font-size: 12px;
+  margin-top: 50px;
+  text-align: left;
+}
+
+.get-in-touch > span {
+  text-decoration: underline;
+  text-decoration-color: #ff294e;
+}
+.box-2 {
+  padding-top: 30px;
+  background-color: white;
+  width: 100%;
+  height: 350px;
+}
+.col-4 > img {
+  margin-left: 10px;
+}
+.box-3 {
+  padding-top: 30px;
+  background-color: white;
+  width: 100%;
+  height: 400px;
+}
+.box-2:hover {
+  background-color: rgb(0, 0, 0);
+  color: white;
+}
+
+.owl-carousel {
+  margin-top: 60px;
+}
+
+.owl-next {
+  font-size: 40px !important;
+  margin-left: 25px !important;
+}
+.owl-prev {
+  font-size: 40px !important;
+}
+
+.divider {
+  margin-top: -60px;
+  font-weight: 600;
+  font-size: 34px;
+}
+
+.col-8 > p {
+  width: 90%;
+}
+
+.owl-carousel-2 > .owl-nav {
+  float: right;
+  transform: rotateZ(90deg);
+  position: relative;
+  top: -200px;
+}
+.quote {
+  float: right;
+  font-size: 140px;
+  margin-right: 100px;
+  color: white;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: red;
+}
+.box-2:hover .quote-2 {
+  display: block;
+}
+
+.quote-2 {
+  display: none;
+  float: right;
+  font-size: 160px;
+  margin-top: -60px;
+  color: white;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: red;
+  margin-right: 30px;
+}
+
+#black {
+  background-color: black;
+}
+
+.test-3 {
+  margin-left: -120px;
+  margin-top: 70px;
+  color: white;
+  background-color: #0000008f;
+}
+
+.test-3 > p {
+  padding: 20px;
+}
+
+.owl-carousel-3 > .owl-nav {
+  float: right;
+}
+
+.client {
+  float: right;
+  color: white;
+}
