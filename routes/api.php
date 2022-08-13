@@ -22,9 +22,15 @@ use Illuminate\Http\Request;
 
 
 
+use Illuminate\Support\Facades\Route;
 
-
-// <?php
+Route::get('/mail-sent', function () {
+    \Illuminate\Support\Facades\Mail::send(new \App\Mail\InquiryMail()); 
+    // \Illuminate\Support\Facades\Notification::send(\App\Models\User::all(), new \App\Mail\InquiryMail()); 
+    // return view('welcome');
+    return redirect('/thankyou-page');
+});
+Route::get('/thankyou-page', 'AgroasiaTractors@mailsent');
 
 //frontend Routes
 Route::get('/', 'AgroasiaTractorsApi@index')->name('frontend.index');

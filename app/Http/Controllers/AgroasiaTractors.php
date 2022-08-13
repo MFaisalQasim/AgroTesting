@@ -11,6 +11,7 @@ use App\Gallery;
 use App\Tractor;
 use App\AdPost;
 use App\Brand;
+use App\Mail\InquiryMail;
 
 class AgroasiaTractors extends Controller
 {
@@ -57,7 +58,7 @@ class AgroasiaTractors extends Controller
         return view("frontend.countries.product",compact('product_details','country'));
     }
     public function country($c_slag){
-        // return "here";  
+        return "here";  
         $brand   = Brand::where("name","massey-ferguson-tractors")->get()->first();
         $brand1  = Brand::where("name","farm-implements")->get()->first();
         $brand2  = Brand::where("name","new-holland-tractors")->get()->first();
@@ -69,6 +70,7 @@ class AgroasiaTractors extends Controller
         return view("frontend.countries.index",compact('country','mf','nh','imp'));
     }
     public function aboutus(){
+        // return 'aboutus';
         $testimonial=Testimonial::get();
         return view("frontend.about_us.index",compact('testimonial'));
     }
@@ -124,7 +126,8 @@ class AgroasiaTractors extends Controller
         $data->country     =     $request->country;
         $data->message     =     $request->message;
         $result = $data->save();
-        return view("frontend.thanks.index");
+        return redirect("/mail-sent");
+        // return view("frontend.thanks.index");
     }
     public function contactform(Request $request){
         $data              =     new ContactFormDatum();
@@ -137,6 +140,10 @@ class AgroasiaTractors extends Controller
         $data->country     =     $request->country;
         $data->message     =     $request->message;
         $data->save();
+        $data = new InquiryMail($data);
+        return view("frontend.thanks.index");
+    }
+    public function mailsent(){
         return view("frontend.thanks.index");
     }
 

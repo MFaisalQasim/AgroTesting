@@ -1,5 +1,14 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+
+Route::get('/mail-sent', function () {
+    \Illuminate\Support\Facades\Mail::send(new \App\Mail\InquiryMail()); 
+    // \Illuminate\Support\Facades\Notification::send(\App\Models\User::all(), new \App\Mail\InquiryMail()); 
+    // return view('welcome');
+    return redirect('/thankyou-page');
+});
+Route::get('/thankyou-page', 'AgroasiaTractors@mailsent');
 //frontend Routes
 Route::get('/', 'AgroasiaTractors@index')->name('frontend.index');
 Route::get('/massey-ferguson-tractors', 'AgroasiaTractors@messeyferguson')->name('frontend.massey_ferguson_tractors.index');
@@ -438,5 +447,4 @@ Route::get('create_zipp',[App\Http\Controllers\WaterMarkController::class, 'wate
        \Artisan::call('optimize:clear');
        return "clear";
     });
-
 
