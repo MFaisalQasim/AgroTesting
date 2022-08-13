@@ -70,7 +70,6 @@ class AgroasiaTractors extends Controller
         return view("frontend.countries.index",compact('country','mf','nh','imp'));
     }
     public function aboutus(){
-        // return 'aboutus';
         $testimonial=Testimonial::get();
         return view("frontend.about_us.index",compact('testimonial'));
     }

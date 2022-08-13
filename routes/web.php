@@ -15,7 +15,7 @@ Route::get('/massey-ferguson-tractors', 'AgroasiaTractors@messeyferguson')->name
 Route::get('/new-holland-tractors', 'AgroasiaTractors@newholland')->name('frontend.new_holland_tractors.index');
 Route::get('/ford-tractors', 'AgroasiaTractors@ford')->name('frontend.ford_tractors.index');
 Route::get('/farm-implements', 'AgroasiaTractors@implement')->name('frontend.farm_implements.index');
-Route::get('/{c_slag}', 'AgroasiaTractors@country')->name('frontend.countries.index');
+Route::get('/country/{c_slag}', 'AgroasiaTractors@country')->name('frontend.countries.index');
 Route::get('/{brand}/{slag}', 'AgroasiaTractors@product')->name('frontend.product.index');
 Route::get('/country/{c_slag}/{slag}_for-sale-in-{country}', 'AgroasiaTractors@countryproduct')->name('frontend.countries.product');
 Route::get('/about-us', 'AgroasiaTractors@aboutus')->name('frontend.about_us.index');
