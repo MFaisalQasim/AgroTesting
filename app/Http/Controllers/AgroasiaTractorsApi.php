@@ -17,6 +17,7 @@ class AgroasiaTractorsApi extends Controller
 {
      
     public function index(){
+        // return 'here';
         $brand=Brand::where("name","massey-ferguson-tractors")->get()->first();
         $brand1 = Brand::where("name","farm-implements")->get()->first();
         $brand2 = Brand::where("name","new-holland-tractors")->get()->first();
@@ -86,7 +87,7 @@ class AgroasiaTractorsApi extends Controller
             if ($ErrorMsg != "") {
                 return ["result"=> "We encounter With Some Error"];
             }else {
-                return [$mf,$nh,$imp];
+                return [$brand,$nh];
             }
         } catch (Throwable $e) {
             report($e);

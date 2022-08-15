@@ -37,7 +37,7 @@ Route::post('/contact-form', 'AgroasiaTractors@contactform')->name('frontend.con
 
 
 
-Route::get('/login', 'PagesController@HomePage');
+// Route::get('/login', 'PagesController@HomePage');
 
 
 Route::group(['middleware' => ['auth', 'roles'],'roles' => ['admin','user','developer']], function () {
@@ -360,6 +360,7 @@ Route::get('log-viewers/logcheck', '\Arcanedev\LogViewer\Http\Controllers\LogVie
 #blog routes frontend
 // Route::get('/', 'BlogController@getBlogList');
 Route::get('blogs/{slug}', 'BlogController@getBlog');
+
 Route::get('blogs/category/{slug}', 'BlogController@getCategoryBlog');
 Route::get('blogs/tag/{slug}', 'BlogController@getTagBlog');
 Route::get('blogs/author/{slug}', 'BlogController@getAuthorBlog');

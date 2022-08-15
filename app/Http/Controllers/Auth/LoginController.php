@@ -21,31 +21,64 @@ class LoginController extends Controller
     public function authenticated(Request $request, $user)
     {
     
-        activity($user->name)
-            ->performedOn($user)
-            ->causedBy($user)
-            ->log('LoggedIn');
-        if($user->hasRole('admin')){
+  
+        // activity($user->name)
+        //     ->performedOn($user)
+        //     ->causedBy($user)
+        //     ->log('LoggedIn');
+        if (  activity($user->name)
+        ->performedOn($user)
+        ->causedBy($user)
+        ->log('LoggedIn')) {
+            if($user->hasRole('admin')){
 
-            // dd('if ma');
-            return redirect('dashboard');
-        }elseif($user->hasRole('developer'))
-        {
-            // dd('elseif ma');
-            return redirect('dashboard');
+                // dd('if ma 1');
+                // return('if ma');
+            // $user= User::where('email', $request->email)->first();
+                //  $token = $user->createToken('my-app-token')->plainTextToken;
+            
+                $response = [
+                    'user' => $user,
+                    // 'token' => $token
+                ];
+            
+                 return response($response, 201);
+                // return redirect('dashboard');
+            }elseif($user->hasRole('developer'))
+            {
+                dd('elseif ma');
+                return('elseif ma');
+                // return redirect('dashboard');
+    
+              
+            }
+             elseif($user->hasRole('user'))
+            {
+                dd('elseif ma');
+                // return redirect('dashboard');
+            }
+            else
+            {
+                dd('else');
+                return  ['else']; 
+                $token = $user->createToken('my-app-token')->plainTextToken;
+            
+                $response = [
+                    'user' => $user,
+                    'token' => $token
+                ];
+            
+                 return response($response, 201);
+                // return redirect('/');
+            }
+        } else {
+            return response([
+                        'message' => ['These credentials do not match our records.']
+                    ], 404);
+    
+        }
 
-          
-        }
-         elseif($user->hasRole('user'))
-        {
-            // dd('elseif ma');
-            return redirect('dashboard');
-        }
-        else
-        {
-            // dd('else');
-            return redirect('/');
-        }
+
     }
 
     public function logout(Request $request)
@@ -57,6 +90,7 @@ class LoginController extends Controller
             ->log('LoggedOut');
         $this->guard()->logout();
         $request->session()->invalidate();
-        return redirect('/');
+        return ('here');
+        // return redirect('/');
     }
 }

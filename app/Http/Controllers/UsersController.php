@@ -9,11 +9,13 @@ use Carbon\Carbon;
 use Illuminate\Cache\RetrievesMultipleKeys;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Hash;
 use File;
 
 class UsersController extends Controller
 {
     public function getIndex(){
+        return "here";
         $users = User::get();
         return view('users.index',compact('users'));
     }

@@ -1,16 +1,15 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\CountryController;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
-use Auth;
-use Session;
-use App\Faq;
-use App\Tractor;
-use Illuminate\Http\Request;
 
-class FaqController extends Controller
+use App\CountryList;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
+use App\Role;
+class CountryListController extends Controller
 {
 
     public function __construct()
@@ -27,23 +26,21 @@ class FaqController extends Controller
 
     public function index(Request $request)
     {
-        $model = str_slug('faq','-');
+        $model = str_slug('countrylist','-');
         if(auth()->user()->permissions()->where('name','=','view-'.$model)->first()!= null) {
             $keyword = $request->get('search');
             $perPage = 25;
 
             if (!empty($keyword)) {
-                $faq = Faq::where('admin_id', 'LIKE', "%$keyword%")
-                ->orWhere('tractor_slug', 'LIKE', "%$keyword%")
-                ->orWhere('question', 'LIKE', "%$keyword%")
-                ->orWhere('status', 'LIKE', "%$keyword%")
+                $countrylist = CountryList::where('name', 'LIKE', "%$keyword%")
+                ->orWhere('link', 'LIKE', "%$keyword%")
                 ->paginate($perPage);
             } else {
-                $faq = Faq::paginate($perPage);
+                $countrylist = CountryList::paginate($perPage);
             }
 
-            return $faq;
-            return view('Faq.faq.index', compact('faq'));
+            // return 'here';
+            return view('country.country-list.index', compact('countrylist'));
         }
         return response(view('403'), 403);
 
@@ -56,10 +53,9 @@ class FaqController extends Controller
      */
     public function create()
     {
-        $model = str_slug('faq','-');
+        $model = str_slug('countrylist','-');
         if(auth()->user()->permissions()->where('name','=','add-'.$model)->first()!= null) {
-            $slag = Tractor::get('tractor_slug');
-            return view('Faq.faq.create',compact('slag'));
+            return view('country.country-list.create');
         }
         return response(view('403'), 403);
 
@@ -74,24 +70,19 @@ class FaqController extends Controller
      */
     public function store(Request $request)
     {
-        $model = str_slug('faq','-');
+        $model = str_slug('countrylist','-');
         if(auth()->user()->permissions()->where('name','=','add-'.$model)->first()!= null) {
             $this->validate($request, [
-			'tractor_slug'   => 'required',
-			'question'       => 'required',
-			'answer'         => 'required'
+            'name'          => 'required',
+            'link'          => 'required',
+			'description'   => 'required',
 		]);
-        $adminId              =     Auth::User()->id; 
-        $data                 = new Faq();
-        $data->admin_id       = $adminId;
-        $data->tractor_slug   = $request->tractor_slug;
-        $data->question       = $request->question;
-        $data->answer         = $request->answer;
-        $data->status         = "1";
-        $data->save();
+            $requestData = $request->all();
+            
+            CountryList::create($requestData);
+            Session::flash('message','CountryList added!');
 
-        Session::flash('message','Faq  added!');
-        return redirect('Faq/faq')->with('flash_message', 'Faq added!');
+            return redirect('country-list')->with('flash_message', 'CountryList added!');
         }
         return response(view('403'), 403);
     }
@@ -105,10 +96,10 @@ class FaqController extends Controller
      */
     public function show($id)
     {
-        $model = str_slug('faq','-');
+        $model = str_slug('countrylist','-');
         if(auth()->user()->permissions()->where('name','=','view-'.$model)->first()!= null) {
-            $faq = Faq::findOrFail($id);
-            return view('Faq.faq.show', compact('faq'));
+            $countrylist = CountryList::findOrFail($id);
+            return view('country.country-list.show', compact('countrylist'));
         }
         return response(view('403'), 403);
     }
@@ -122,42 +113,30 @@ class FaqController extends Controller
      */
     public function edit($id)
     {
-        $model = str_slug('faq','-');
+        $model = str_slug('countrylist','-');
         if(auth()->user()->permissions()->where('name','=','edit-'.$model)->first()!= null) {
-            $faq = Faq::findOrFail($id);
-            $slag = Tractor::get('tractor_slug');
-            return view('Faq.faq.edit', compact('faq','slag'));
+            $countrylist = CountryList::findOrFail($id);
+            return view('country.country-list.edit', compact('countrylist'));
         }
         return response(view('403'), 403);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @param  int  $id
-     *
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
-     */
     public function update(Request $request, $id)
     {
-        $model = str_slug('faq','-');
+        $model = str_slug('countrylist','-');
         if(auth()->user()->permissions()->where('name','=','edit-'.$model)->first()!= null) {
             $this->validate($request, [
-			'tractor_slug'  => 'required',
-			'question'      => 'required',
-			'answer'        => 'required'
+			'name' => 'required',
+			'link' => 'required',
+            'description'   =>  'required',
 		]);
             $requestData = $request->all();
             
-            Faq::where('id',$id)->update([
-                'tractor_slug'    => $request->tractor_slug,
-                'question'        => $request->question,
-                'answer'          => $request->answer,
-            ]);
-             Session::flash('message','Faq  Updated!');
+            $countrylist = CountryList::findOrFail($id);
+             $countrylist->update($requestData);
+             Session::flash('message','CountryList updated!');
 
-             return redirect('Faq/faq')->with('flash_message', 'Faq updated!');
+             return redirect('country-list')->with('flash_message', 'CountryList updated!');
         }
         return response(view('403'), 403);
 
@@ -172,12 +151,13 @@ class FaqController extends Controller
      */
     public function destroy($id)
     {
-        $model = str_slug('faq','-');
+        $model = str_slug('countrylist','-');
         if(auth()->user()->permissions()->where('name','=','delete-'.$model)->first()!= null) {
-            Faq::destroy($id);
-
-            return redirect('Faq/faq')->with('flash_message', 'Faq deleted!');
+            CountryList::destroy($id);
+            Session::flash('message','CountryList deleted!');
+            return redirect('country-list')->with('flash_message', 'CountryList deleted!');
         }
+
         return response(view('403'), 403);
 
     }

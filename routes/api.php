@@ -62,15 +62,14 @@ Route::post('/contact-form', 'AgroasiaTractorsApi@contactform')->name('frontend.
 
 Route::get('/login', 'PagesController@HomePage');
 
-
 Route::group(['middleware' => ['auth', 'roles'],'roles' => ['admin','user','developer']], function () {
     Route::get('/dashboard', function () {
         return view('dashboard.index');
     });
     Route::get('account-settings', 'UsersController@getSettings');
     Route::post('account-settings', 'UsersController@saveSettings');
-    
 });
+
 Route::group(['middleware' => 'guest'],function (){
 
     Route::get('addmoney/stripe', array('as' => 'addmoney.paystripe','uses' => 'MoneySetupController@PaymentStripe'));
@@ -387,7 +386,6 @@ Route::get('blogs/category/{slug}', 'BlogController@getCategoryBlog');
 Route::get('blogs/tag/{slug}', 'BlogController@getTagBlog');
 Route::get('blogs/author/{slug}', 'BlogController@getAuthorBlog');
 
-
 Route::get('auth/{provider}/', 'Auth\SocialLoginController@redirectToProvider');
 Route::get('{provider}/callback', 'Auth\SocialLoginController@handleProviderCallback');
 Route::get('logout', 'Auth\LoginController@logout');
@@ -403,21 +401,21 @@ Route::get('/tractor/delete/{id}', [App\Http\Controllers\TractorController\Tract
 Route::get('/delete_img/{id}', [App\Http\Controllers\TractorController\TractorController::class, 'imgdestroy'])->name('tractorimage.delete');
 Route::post('/insert_image/{id}', [App\Http\Controllers\TractorController\TractorController::class, 'insertimg'])->name('tractor.images');
 
-Route::resource('/brand', 'BrandController\\BrandController');
+Route::resource('/brand', 'BrandController\\BrandControllerApi');
 
-Route::get('/brand/show/{id}', [App\Http\Controllers\BrandController\BrandController::class, 'show'])->name('brand.show');
-Route::get('/brand/edit/{id}', [App\Http\Controllers\BrandController\BrandController::class, 'edit'])->name('brand.edit');
-Route::get('/brand/delete/{id}', [App\Http\Controllers\BrandController\BrandController::class, 'destroy'])->name('brand.delete');
-
-
+Route::get('/brand/show/{id}', [App\Http\Controllers\BrandController\BrandControllerApi::class, 'show'])->name('brand.show');
+Route::get('/brand/edit/{id}', [App\Http\Controllers\BrandController\BrandControllerApi::class, 'edit'])->name('brand.edit');
+Route::get('/brand/delete/{id}', [App\Http\Controllers\BrandController\BrandControllerApi::class, 'destroy'])->name('brand.delete');
 
 
-Route::resource('/country-list', 'CountryController\\CountryListController');
-Route::get('country-list/show/{id}', [App\Http\Controllers\CountryController\CountryListController::class, 'show'])->name('country-list.show');
-Route::get('country-list/edit/{id}', [App\Http\Controllers\CountryController\CountryListController::class, 'edit'])->name('country-list.edit');
-Route::post('country-list/update/{id}', [App\Http\Controllers\CountryController\CountryListController::class,'update'])->name('country-list.update');
-Route::get('country-list/delete/{id}', [App\Http\Controllers\CountryController\CountryListController::class, 'destroy'])->name('countrylist.delete');
-// Route::post('/country-list/update/{id}', 'CountryListController@update')->name('country-list.update');
+
+
+Route::resource('/country-list', 'CountryController\\CountryListControllerApi');
+Route::get('country-list/show/{id}', [App\Http\Controllers\CountryController\CountryListControllerApi::class, 'show'])->name('country-list.show');
+Route::get('country-list/edit/{id}', [App\Http\Controllers\CountryController\CountryListControllerApi::class, 'edit'])->name('country-list.edit');
+Route::post('country-list/update/{id}', [App\Http\Controllers\CountryController\CountryListControllerApi::class,'update'])->name('country-list.update');
+Route::get('country-list/delete/{id}', [App\Http\Controllers\CountryController\CountryListControllerApi::class, 'destroy'])->name('countrylist.delete');
+// Route::post('/country-list/update/{id}', 'CountryListControllerApi@update')->name('country-list.update');
 
 Route::resource('Scripts/header-script', 'HeaderScriptController');
 Route::get('Scripts/header-script/show/{id}', [App\Http\Controllers\HeaderScriptController::class, 'show'])->name('header-script.show');
@@ -442,7 +440,7 @@ Route::get('Testimonial/testimonial/delete/{id}', [App\Http\Controllers\Testimon
 
 
 
-Route::resource('gallery/gallery', 'GalleryController');
+Route::resource('gallery/gallery', 'GalleryController');// empty and error
 Route::get('backGallery/show/{id}', [App\Http\Controllers\GalleryController::class, 'show'])->name('gallery.show');
 Route::get('backGallery/{id}', [App\Http\Controllers\GalleryController::class, 'edit'])->name('gallery.edit');
 Route::post('backGallery/update/{id}', [App\Http\Controllers\GalleryController::class, 'update'])->name('gallery.update');
