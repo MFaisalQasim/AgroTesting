@@ -23,7 +23,6 @@ class PagesController extends Controller
 
     public function HomePage()
     {
-        // return ['here'];
         return view('frontend.homepage');
     }
 }

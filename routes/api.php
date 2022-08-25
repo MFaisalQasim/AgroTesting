@@ -19,9 +19,6 @@ use Illuminate\Http\Request;
 
 
 
-
-
-
 use Illuminate\Support\Facades\Route;
 
 Route::get('/mail-sent', function () {
@@ -38,8 +35,8 @@ Route::get('/massey-ferguson-tractors', 'AgroasiaTractorsApi@messeyferguson')->n
 Route::get('/new-holland-tractors', 'AgroasiaTractorsApi@newholland')->name('frontend.new_holland_tractors.index');
 Route::get('/ford-tractors', 'AgroasiaTractorsApi@ford')->name('frontend.ford_tractors.index');
 Route::get('/farm-implements', 'AgroasiaTractorsApi@implement')->name('frontend.farm_implements.index');
-Route::get('/{c_slag}', 'AgroasiaTractorsApi@country')->name('frontend.countries.index');
-Route::get('/{brand}/{slag}', 'AgroasiaTractorsApi@product')->name('frontend.product.index');
+Route::get('/country/{c_slag}', 'AgroasiaTractorsApi@country')->name('frontend.countries.index');
+Route::get('/product/{brand}/{slag}', 'AgroasiaTractorsApi@product')->name('frontend.product.index');
 Route::get('/country/{c_slag}/{slag}_for-sale-in-{country}', 'AgroasiaTractorsApi@countryproduct')->name('frontend.countries.product');
 Route::get('/about-us', 'AgroasiaTractorsApi@aboutus')->name('frontend.about_us.index');
 Route::get('/contact-us', 'AgroasiaTractorsApi@contactus')->name('frontend.contact_us.index');

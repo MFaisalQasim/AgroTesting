@@ -58,7 +58,6 @@ class AgroasiaTractors extends Controller
         return view("frontend.countries.product",compact('product_details','country'));
     }
     public function country($c_slag){
-        return "here";  
         $brand   = Brand::where("name","massey-ferguson-tractors")->get()->first();
         $brand1  = Brand::where("name","farm-implements")->get()->first();
         $brand2  = Brand::where("name","new-holland-tractors")->get()->first();
